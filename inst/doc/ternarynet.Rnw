@@ -1,0 +1,151 @@
+% automatic manuscript creation for frma
+% -*- mode: noweb; noweb-default-code-mode: R-mode; -*-
+%\VignetteIndexEntry{ternarynet: A Computational Bayesian Approach to Ternary Network Estimation}
+%\VignetteDepends{ternarynet}
+%\VignettePackage{ternarynet}
+\documentclass[12pt]{article}
+\usepackage{hyperref}
+\usepackage[authoryear, round]{natbib}
+
+\textwidth=6.2in
+\textheight=8.5in
+\parskip=.3cm
+\oddsidemargin=.1in
+\evensidemargin=.1in
+\headheight=-.3in
+
+\newcommand\Rpackage[1]{{\textsf{#1}\index{#1 (package)}}}
+\newcommand\dataset[1]{{\textit{#1}\index{#1 (data set)}}}
+\newcommand\Rclass[1]{{\textit{#1}\index{#1 (class)}}}
+\newcommand\Rfunction[1]{{{\small\texttt{#1}}\index{#1 (function)}}}
+\newcommand\Rfunarg[1]{{\small\texttt{#1}}}
+\newcommand\Robject[1]{{\small\texttt{#1}}}
+
+\author{Matthew N. McCall and Anthony Almudevar}
+
+\begin{document}
+\title{A Computational Bayesian Approach to Ternary Network Estimation (ternarynet)}
+\maketitle
+\tableofcontents
+
+\newpage
+
+\section{Introduction}
+
+This document describes \Rpackage{ternarynet}, which implements a
+computational Bayesian algorithm to estimate a ternary network from
+perturbation data. We strong recommend reading the paper,
+\emph{Fitting Boolean Networks from Steady State Perturbation Data}
+(Almudevar \emph{et. al} 2011) before proceeding with this vignette.
+
+\section{Getting Started}
+First begin by downloading and installing the ternarynet package.
+<<echo=T,results=hide>>=
+library(ternarynet)
+@ 
+
+\subsection{Basic Input Data}
+The input data to the main ternarynet functions are a matrix of steady
+state observations and a matrix of perturbation experiments, where
+columns represent perturbation experiments and rows represent measured
+genes. The perturbation matrix consists of all zeros except for those
+genes experimentally perturbed, which are denoted by 1 if
+overexpressed or -1 if underexpressed. The steady state matrix
+consists of the response of each measured gene to each
+perturbation. Note that the perturbed gene(s) in each experiment are
+forced to response. For example if we perturb each of five genes by
+over-expressing each one, the perturbation matrix
+would be:
+<<echo=F,results=hide>>=
+perturbationObj <- matrix(c(
+1,0,0,0,0,	
+0,1,0,0,0,	
+0,0,1,0,0,	
+0,0,0,1,0,
+0,0,0,0,1),nrow=5,ncol=5,byrow=T)	
+@ 
+<<echo=T>>=
+perturbationObj
+@ 
+
+A potential steady state matrix based on the perturbation experiments above is:
+<<echo=F,results=hide>>=
+steadyStateObj<-matrix(c(
+ 1, 0, 0, 0, 0,	
+ 0, 1, 1, 1, 0,
+ 0, 1, 1, 1, 0,	
+ 0, 1, 1, 1, 0,
+ 1, 0, 0, 0, 1),nrow=5,ncol=5,byrow=T)
+@ 
+<<echo=T>>=
+steadyStateObj
+@ 
+
+We can interpret the first perturbation experiment, persistent
+over-expression of gene~1 (column~1), as resulting in over-expression
+of genes~2-5.
+
+\subsection{Model Fitting}
+There are numerous modeling parameters that we could alter (these are
+outlined in the help files and described in Almudevar et al. (2011)),
+but in this example, we will call the ternary network fit using the
+default parameters (except for setting the random seed):
+<<echo=T,results=hide>>=
+tnfit <- tnetfit(steadyStateObj, perturbationObj, xSeed=11235)
+@ 
+
+This creates a ternaryFit object, tnfit, that contains the results of
+the model fitting. We can assess the model fit by examining the traces
+of four key parameters:
+<<echo=T>>=
+plotTraces(tnfit)
+@ 
+
+\subsection{Posterior Sampling}
+Once we have fit the ternary network model, we can sample from the
+posterior density on the model space:
+<<echo=T,results=hide>>=
+tnpost <- tnetpost(tnfit, xSeed=11235)
+@ 
+
+\subsection{Summary Results}
+The ternaryPosterior object contains a wealth of information that can
+be used to answer a wide variety of statistical and biological
+questions; however, it is often convenient to summarize this
+information. The first summarization we will consider is reporting the
+posterior probabilities of the attractors resulting from either
+transient or persistent perturbations. These summaries can be produced
+as follows:
+<<echo=T>>=
+attractorSummary(tnpost)
+attractorSummary(tnpost, wildtype=FALSE)
+@ 
+
+The first summary provides the attractors for a transient perturbation
+(the respond of the wildtype network) and second summary for a
+persistent perturbation. The first column provides the number of the
+perturbation experiment (corresponding to the columns in the
+perturbation matrix), and the last column provide the posterior
+probability of each attractor. The middle columns are a summary of
+each attractor, as described in Almudevar et al. (2011).
+
+In addition to investigating the attractor structure, one might also
+want to examine the network topology. A simple summary of the topology
+can be generated as follows:
+<<echo=T>>=
+graphPosterior(tnpost)
+@ 
+
+This produces a matrix where rows are children and columns are parents
+of regulatory relationships. The values in the matrix are the marginal
+posterior probabilities of each relationship. The first column
+represents the probability of a given gene having no parents. 
+
+\newpage
+
+\section{Session Info}
+<<echo=T>>=
+sessionInfo()
+@ 
+
+\end{document}
