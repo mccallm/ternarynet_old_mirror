@@ -94,10 +94,12 @@ extern "C" {
     const double *steadyStateObj = REAL(RsteadyStateObj);
     const int *perturbationObj = INTEGER(RperturbationObj);
 
+    Rprintf("Perturbation matrices loaded \n");
+
     int *degreeObj = new int[nGene+1];
     RdegreeObjMin = coerceVector(RdegreeObjMin,INTSXP);
     for(int i=0; i < nGene; i++) degreeObj[i+1] = INTEGER(RdegreeObjMin)[i];
-    
+
     int *graphObj = new int[nGene*nGene];
     RgraphObjMin = coerceVector(RgraphObjMin,INTSXP);
     for(int i=0; i < nGene; i++)
@@ -112,12 +114,30 @@ extern "C" {
 
     Rprintf("Fit parameters loaded \n");
 
-    double *myscores = new double[m0*mdelta];
+    //cout << "BP1" << endl;
+    //cin >> ipause >> endl;
+
+
+    double *myscores = new double[m0]; // debug 01-28-2012 m0*mdelta -> m0
     int myscores_count=0;
 
-    int *degreeObjs = new int[m0*mdelta*nGene];
-    int *graphObjs = new int[m0*mdelta*nGene*nGene];
-    int *tableObjs = new int[m0*mdelta*nGene*tableWidth];
+    //cout << "BP2" << endl;
+    //cin >> ipause >> endl;
+
+    int *degreeObjs = new int[m0*nGene]; // debug 01-28-2012 m0*mdelta -> m0
+
+    //cout << "BP3" << endl;
+    //cin >> ipause >> endl;
+
+    int *graphObjs = new int[m0*nGene*nGene]; // debug 01-28-2012 m0*mdelta -> m0
+
+    //cout << "BP4" << endl;
+    //cin >> ipause >> endl;
+
+    int *tableObjs = new int[m0*nGene*tableWidth]; // debug 01-28-2012 m0*mdelta -> m0
+
+    //cout << "BP5" << endl;
+    //cin >> ipause >> endl;
 
     Rprintf("Output parameters created \n");
 
