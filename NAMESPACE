@@ -1,6 +1,6 @@
 useDynLib("ternarynet")
 
-export(tnetfit,tnetpost,ternaryFit,ternaryFitParameters,ternaryPost,graphPosterior,attractorSummary,plotTraces)
+export(tnetfit,tnetpost,ternaryFit,ternaryFitParameters,ternaryPost,graphPosterior,attractorSummary,plotTraces,getAttractor)
 
 exportClasses(ternaryFitParameters,ternaryFit,ternaryPost)
 
