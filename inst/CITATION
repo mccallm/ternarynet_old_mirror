@@ -1,0 +1,12 @@
+citEntry(entry = "Article",
+         author = "Anthony Almudevar and Matthew N McCall and Helene McMurray and Hartmut Land",
+         title = "Fitting Boolean Networks from Steady State Perturbation Data",
+         journal = "Statistical Applications in Genetics and Molecular Biology",
+         volume = "10",
+         number = "1",
+         year = "2011",
+         pages = "47",
+         publisher = "Berkeley Electronic Press",
+         textVersion = "Almudevar A, McCall MN, McMurray H, Land H (2011). Fitting Boolean Networks from Steady State Perturbation Data, Statistical Applications in Genetics and Molecular Biology, 10(1): Article 47.",
+	 header = "For use of the ternarynet package, please cite:"
+)

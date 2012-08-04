@@ -1,5 +1,7 @@
 useDynLib("ternarynet")
 
+importFrom(utils, citation, toBibtex)
+
 export(tnetfit,tnetpost,ternaryFit,ternaryFitParameters,ternaryPost,graphPosterior,attractorSummary,plotTraces,getAttractor)
 
 exportClasses(ternaryFitParameters,ternaryFit,ternaryPost)
