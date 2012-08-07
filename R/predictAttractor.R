@@ -1,4 +1,4 @@
-getAttractor <- function(tpost, perturbations, wildtype=TRUE, verbose=FALSE){
+predictAttractor <- function(tpost, perturbations, wildtype=TRUE, verbose=FALSE){
 
   fg <- perturbations$perturbed.genes
   fs <- perturbations$forced.states+2

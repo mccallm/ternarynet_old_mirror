@@ -1,8 +1,9 @@
 useDynLib("ternarynet")
 
 importFrom(utils, citation, toBibtex)
+importFrom(igraph, graph.edgelist, plot.igraph, tkplot)
 
-export(tnetfit,tnetpost,ternaryFit,ternaryFitParameters,ternaryPost,graphPosterior,attractorSummary,plotTraces,getAttractor)
+export(tnetfit,tnetpost,ternaryFit,ternaryFitParameters,ternaryPost,graphPosterior,attractorSummary,plotTraces,predictAttractor,simulateSteadyState)
 
 exportClasses(ternaryFitParameters,ternaryFit,ternaryPost)
 
@@ -11,3 +12,5 @@ exportMethods(dim,perturbationObj,steadyStateObj,degreeObjMin,graphObjMin,tableO
 exportMethods(perturbationType,scoreType,backupStage, maxStage, maxTransition, epsilon, beta0, chi0, delta, ne, m0, maxDegree, pAddParent, pExchangeParent, neighborDegree, pNeighborhood, rho, edgePenalty,show,"perturbationType<-","scoreType<-","backupStage<-","maxStage<-","maxTransition<-","epsilon<-","beta0<-","chi0<-","delta<-","ne<-","m0<-","maxDegree<-","pAddParent<-","pExchangeParent<-","neighborDegree<-","pNeighborhood<-","rho<-","edgePenalty<-")
 
 exportMethods(scores,degreeObjs,graphObjs,tableObjs,"scores<-","degreeObjs<-","graphObjs<-","tableObjs<-")
+
+exportMethods(plot)
