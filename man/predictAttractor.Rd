@@ -1,12 +1,12 @@
-\name{getAttractor}
-\alias{getAttractor}
-\title{Compute an Attractor}
+\name{predictAttractor}
+\alias{predictAttractor}
+\title{Predict the attractor(s) resulting from a given perturbation}
 \description{
   This function computes the posterior probabilities of attractors reached for a
   given perturbation using the networks from a ternaryPost object.
 }
 \usage{
-getAttractor(tpost, perturbations, wildtype = TRUE, verbose = FALSE)
+predictAttractor(tpost, perturbations, wildtype = TRUE, verbose = FALSE)
 }
 \arguments{
   \item{tpost}{a ternaryPost object}
@@ -32,7 +32,7 @@ pObj <- matrix(c(1,0,0,0,1,0,0,0,1),nrow=3)
 rownames(ssObj) <- rownames(pObj) <- colnames(ssObj) <- colnames(pObj) <- c("Gene1","Gene2","Gene3")
 tnfitObj <- tnetfit(ssObj, pObj)
 tnpostObj <- tnetpost(tnfitObj, mdelta=10, msample=10)
-getAttractor(tnpostObj, list(perturbed.genes=c(1,2),forced.states=c(1,1)))
+predictAttractor(tnpostObj, list(perturbed.genes=c(1,2),forced.states=c(1,1)))
 }
 \keyword{manip}
 
