@@ -54,12 +54,3 @@ setReplaceMethod("inputParams", "ternaryFit", function(x, value){x@inputParams <
 setReplaceMethod("traces", "ternaryFit", function(x, value){x@traces <- value; validObject(x); x})
 setReplaceMethod("stageCount", "ternaryFit", function(x, value){x@stageCount <- value; validObject(x); x})
 
-## plotting functions
-setMethod("plot", "ternaryFit", function(x, type="interactive", ...){
-  grph=graphObjMin(x)
-  deg=apply(grph,2,function(x) sum(x>0))
-  el=cbind(rep(1:ncol(grph),deg),as.vector(grph)[as.vector(grph)>0])
-  if(type=="static") plot(graph.edgelist(el), ...)
-  if(type=="interactive") tkplot(graph.edgelist(el), ...)
-})
-

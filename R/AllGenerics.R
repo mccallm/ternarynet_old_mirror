@@ -1,4 +1,4 @@
-# slot getters
+## slot getters
 setGeneric("perturbationObj", function(x) standardGeneric("perturbationObj"))
 setGeneric("steadyStateObj", function(x) standardGeneric("steadyStateObj"))
 setGeneric("degreeObjMin", function(x) standardGeneric("degreeObjMin"))
@@ -34,7 +34,7 @@ setGeneric("edgePenalty", function(x) standardGeneric("edgePenalty"))
 setGeneric("traces", function(x) standardGeneric("traces"))
 setGeneric("stageCount", function(x) standardGeneric("stageCount"))
 
-# slot setters
+## slot setters
 setGeneric("perturbationObj<-", function(x, value) standardGeneric("perturbationObj<-"))
 setGeneric("steadyStateObj<-", function(x, value) standardGeneric("steadyStateObj<-"))
 setGeneric("degreeObjMin<-", function(x, value) standardGeneric("degreeObjMin<-"))

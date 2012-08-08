@@ -65,7 +65,7 @@
   \code{ternaryFit()}, this is highly discouraged. Typically this class
   is created by running the \code{tnetfit} function.
 }
-  
+
 \section{Slots}{
   \describe{
     \item{\code{perturbationObj}:}{a matrix of perturbation

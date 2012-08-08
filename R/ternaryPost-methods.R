@@ -31,9 +31,3 @@ setReplaceMethod("graphObjs", "ternaryPost", function(x, value){x@graphObjs <- v
 setReplaceMethod("tableObjs", "ternaryPost", function(x, value){x@tableObjs <- value; validObject(x); x})
 setReplaceMethod("inputParams", "ternaryPost", function(x, value){x@inputParams <- value; validObject(x); x})
 
-setMethod("plot", "ternaryPost", function(x, threshold=0.5, type="interactive", ...){
-  grph=graphPosterior(x)
-  el=which(grph[,-1]>threshold, arr.ind=TRUE)[,c(2,1)]
-  if(type=="static") plot(graph.edgelist(el), ...)
-  if(type=="interactive") tkplot(graph.edgelist(el), ...)
-})
