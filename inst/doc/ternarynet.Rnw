@@ -83,7 +83,7 @@ steadyStateObj
 
 We can interpret the first perturbation experiment, persistent
 over-expression of gene~1 (column~1), as resulting in over-expression
-of genes~2-5.
+of gene~5.
 
 \subsection{Model Fitting}
 There are numerous modeling parameters that we could alter (these are
@@ -122,7 +122,7 @@ attractorSummary(tnpost, wildtype=FALSE)
 @ 
 
 The first summary provides the attractors for a transient perturbation
-(the respond of the wildtype network) and second summary for a
+(the response of the wildtype network) and second summary for a
 persistent perturbation. The first column provides the number of the
 perturbation experiment (corresponding to the columns in the
 perturbation matrix), and the last column provide the posterior

@@ -28,7 +28,8 @@ setValidity("ternaryFit", function(object){
   nExperiment <- ncol(perturbationObj(object))
 
   if(nrow(steadyStateObj(object)) != nGene || ncol(steadyStateObj(object)) != nExperiment) return("'steadyStateObj' slot and 'pertubationObj' slot must have the same dimensions")
-  if(any(diag(steadyStateObj(object)) != diag(perturbationObj(object)))) return("'steadyStateObj' slot and 'pertubationObj' slot must have the same diagonal elements")
+  indp <- which(perturbationObj(object)!=0, arr.ind=TRUE)
+  if(any(steadyStateObj(object)[indp] != perturbationObj(object)[indp])) return("Non-zero elements of 'perturbationObj' slot must match corresponding elements of 'steadyStateObj'")
   if(length(degreeObjMin(object)) != nGene) return("'degreeObjMin' slot must have length equal to the number of rows of the 'perturbationObj' slot")
   if(nrow(graphObjMin(object)) != nGene || ncol(graphObjMin(object)) != nGene) return("'graphObjMin' slot must be a matrix with row and column lengths equal to the number of rows of the 'perturbationObj' slot")
   if(ncol(tableObjMin(object)) != nGene) return("'tableObjMin' slot must be a matrix with row length equal to the number of rows of the 'perturbationObj' slot")
