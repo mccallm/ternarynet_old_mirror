@@ -323,7 +323,7 @@ void PerturbGene(int proposalGene, int nGene, int maxDegree, int nOutcomes,
 	int *excludedGenes = new int [maxDegree + 2];	
 
 	addParentFlag = (uniformdist() < probAddParent) && (newDegree[0] < maxDegree);
-	exchangeParentFlag = (uniformdist() < probExchangeParent);
+        exchangeParentFlag = (uniformdist() < probExchangeParent) && (newDegree[0] < (nGene-1));  // 05-22-2013
 	if ( (newDegree[0] > 0) &&  (exchangeParentFlag && !addParentFlag) ) perturbationType=1; 	// 09-15-2011
 	if ( (newDegree[0] == 0) || (addParentFlag) )  perturbationType=2; // 09-15-2011
 	if ( (newDegree[0] > 0) && !exchangeParentFlag && !addParentFlag ) perturbationType=3;
