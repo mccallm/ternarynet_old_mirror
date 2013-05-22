@@ -1,6 +1,6 @@
 Package: ternarynet
-Version: 1.5.0
-Date: 2013-03-05
+Version: 1.5.1
+Date: 2013-05-22
 Title: Ternary Network Estimation
 Description: A computational Bayesian approach to ternary gene regulatory network estimation from gene perturbation experiments.
 Author: Matthew N. McCall <mccallm@gmail.com>, Anthony Almudevar <Anthony_Almudevar@urmc.rochester.edu>

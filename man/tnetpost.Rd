@@ -5,7 +5,7 @@
   This function samples from the posterior density of a ternary network based on perturbation experiments.
 }
 \usage{
-tnetpost(tfit, mdelta=as.integer(2000), msample=as.integer(2000), temperatureScale=1.0, xSeed=NA)
+tnetpost(tfit, mdelta=as.integer(10000), msample=as.integer(2000), temperatureScale=1.0, xSeed=NA)
 }
 \arguments{
   \item{tfit}{a ternaryFit object}

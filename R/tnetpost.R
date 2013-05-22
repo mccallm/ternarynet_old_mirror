@@ -1,4 +1,4 @@
-tnetpost <- function(tfit, mdelta=as.integer(2000), msample=as.integer(2000), temperatureScale=1.0, xSeed=NA){
+tnetpost <- function(tfit, mdelta=as.integer(10000), msample=as.integer(2000), temperatureScale=1.0, xSeed=NA){
 
   ssObj <- as.vector(t(steadyStateObj(tfit))+2)
   pObj <- as.integer(t(perturbationObj(tfit))+2)

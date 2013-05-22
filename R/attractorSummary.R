@@ -1,7 +1,7 @@
 attractorSummary <- function (tpost, post.prob.limit = 0.01, wildtype = TRUE){
 
   perturbationObj(tpost) <- perturbationObj(tpost)+2
-  steadyStateObj(tpost) <- steadyStateObj(tpost)+2
+  steadyStateObj(tpost) <- round(steadyStateObj(tpost))+2
   
   nOutcomes <- 3
   n.genes <- nrow(perturbationObj(tpost))
