@@ -7,7 +7,7 @@ export(tnetfit,tnetpost,ternaryFit,ternaryFitParameters,ternaryPost,graphPosteri
 
 exportClasses(ternaryFitParameters,ternaryFit,ternaryPost)
 
-exportMethods(dim,perturbationObj,steadyStateObj,degreeObjMin,graphObjMin,tableObjMin,newScore,minScore,finalTemperature,traces,stageCount,xSeed,inputParams,show,"perturbationObj<-","steadyStateObj<-","degreeObjMin<-","graphObjMin<-","tableObjMin<-","newScore<-","minScore<-","finalTemperature<-","traces<-","stageCount<-","xSeed<-","inputParams<-")
+exportMethods(dim,perturbationObj,steadyStateObj,geneNames,experimentNames,degreeObjMin,graphObjMin,tableObjMin,newScore,minScore,finalTemperature,traces,stageCount,xSeed,inputParams,show,"perturbationObj<-","steadyStateObj<-","geneNames<-","experimentNames<-","degreeObjMin<-","graphObjMin<-","tableObjMin<-","newScore<-","minScore<-","finalTemperature<-","traces<-","stageCount<-","xSeed<-","inputParams<-")
 
 exportMethods(perturbationType,scoreType,backupStage, maxStage, maxTransition, epsilon, beta0, chi0, delta, ne, m0, maxDegree, pAddParent, pExchangeParent, neighborDegree, pNeighborhood, rho, edgePenalty,show,"perturbationType<-","scoreType<-","backupStage<-","maxStage<-","maxTransition<-","epsilon<-","beta0<-","chi0<-","delta<-","ne<-","m0<-","maxDegree<-","pAddParent<-","pExchangeParent<-","neighborDegree<-","pNeighborhood<-","rho<-","edgePenalty<-")
 

@@ -1,6 +1,8 @@
 ## slot getters
 setGeneric("perturbationObj", function(x) standardGeneric("perturbationObj"))
 setGeneric("steadyStateObj", function(x) standardGeneric("steadyStateObj"))
+setGeneric("geneNames", function(x) standardGeneric("geneNames"))
+setGeneric("experimentNames", function(x) standardGeneric("experimentNames"))
 setGeneric("degreeObjMin", function(x) standardGeneric("degreeObjMin"))
 setGeneric("graphObjMin", function(x) standardGeneric("graphObjMin"))
 setGeneric("tableObjMin", function(x) standardGeneric("tableObjMin"))
@@ -37,6 +39,8 @@ setGeneric("stageCount", function(x) standardGeneric("stageCount"))
 ## slot setters
 setGeneric("perturbationObj<-", function(x, value) standardGeneric("perturbationObj<-"))
 setGeneric("steadyStateObj<-", function(x, value) standardGeneric("steadyStateObj<-"))
+setGeneric("geneNames<-", function(x, value) standardGeneric("geneNames<-"))
+setGeneric("experimentNames<-", function(x, value) standardGeneric("experimentNames<-"))
 setGeneric("degreeObjMin<-", function(x, value) standardGeneric("degreeObjMin<-"))
 setGeneric("graphObjMin<-", function(x, value) standardGeneric("graphObjMin<-"))
 setGeneric("tableObjMin<-", function(x, value) standardGeneric("tableObjMin<-"))

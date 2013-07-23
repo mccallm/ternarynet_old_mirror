@@ -11,6 +11,10 @@
 \alias{perturbationObj,ternaryFit-method}
 \alias{steadyStateObj}
 \alias{steadyStateObj,ternaryFit-method}
+\alias{geneNames}
+\alias{geneNames,ternaryFit-method}
+\alias{experimentNames}
+\alias{experimentNames,ternaryFit-method}
 \alias{degreeObjMin}
 \alias{degreeObjMin,ternaryFit-method}
 \alias{graphObjMin}
@@ -35,6 +39,10 @@
 \alias{perturbationObj<-,ternaryFit-method}
 \alias{steadyStateObj<-}
 \alias{steadyStateObj<-,ternaryFit-method}
+\alias{geneNames<-}
+\alias{geneNames<-,ternaryFit-method}
+\alias{experimentNames<-}
+\alias{experimentNames<-,ternaryFit-method}
 \alias{degreeObjMin<-}
 \alias{degreeObjMin<-,ternaryFit-method}
 \alias{graphObjMin<-}
@@ -73,6 +81,11 @@
     \item{\code{steadyStateObj}:}{a matrix of steady gene expression
   observations from a perturbation experiment. Rows are genes and
   columns are experiments.}
+    \item{\code{geneNames}:}{a vector of gene names corresponding to the
+  rows of the perturbationObj and steadyStateObj.}
+    \item{\code{experimentNames}:}{a vector of experiment names
+      corresponding to the columns of the perturbationObj and
+      steadyStateObj.}
     \item{\code{degreeObjMin}:}{a vector containing the in-degree of
   each node in the fit achieving the minimum score}
     \item{\code{graphObjMin}:}{a matrix containing the parents of
@@ -105,7 +118,6 @@
 \examples{
 ssObj <- matrix(c(1,1,1,0,1,1,0,0,1),nrow=3)
 pObj <- matrix(c(1,0,0,0,1,0,0,0,1),nrow=3)
-rownames(ssObj) <- rownames(pObj) <- colnames(ssObj) <- colnames(pObj) <- c("Gene1","Gene2","Gene3")
 tnfitObj <- tnetfit(ssObj, pObj)
 class(tnfitObj)
 }

@@ -9,6 +9,8 @@
 \alias{dim,ternaryPost-method}
 \alias{perturbationObj,ternaryPost-method}
 \alias{steadyStateObj,ternaryPost-method}
+\alias{geneNames,ternaryPost-method}
+\alias{experimentNames,ternaryPost-method}
 \alias{scores}
 \alias{scores,ternaryPost-method}
 \alias{degreeObjs}
@@ -20,6 +22,8 @@
 \alias{inputParams,ternaryPost-method}
 \alias{perturbationObj<-,ternaryPost-method}
 \alias{steadyStateObj<-,ternaryPost-method}
+\alias{geneNames<-,ternaryPost-method}
+\alias{experimentNames<-,ternaryPost-method}
 \alias{scores<-}
 \alias{scores<-,ternaryPost-method}
 \alias{degreeObjs<-}
@@ -48,6 +52,11 @@
     \item{\code{steadyStateObj}:}{a matrix of steady gene expression
   observations from a perturbation experiment. Rows are genes and
   columns are experiments.}
+    \item{\code{geneNames}:}{a vector of gene names corresponding to the
+  rows of the perturbationObj and steadyStateObj.}
+    \item{\code{experimentNames}:}{a vector of experiment names
+      corresponding to the columns of the perturbationObj and
+      steadyStateObj.}
     \item{\code{scores}:}{the score of each sample}
     \item{\code{degreeObjs}:}{the in-degree vector for each sample}
     \item{\code{graphObjs}:}{the graph matrix for each sample}
@@ -73,7 +82,6 @@
 \examples{
 ssObj <- matrix(c(1,1,1,0,1,1,0,0,1),nrow=3)
 pObj <- matrix(c(1,0,0,0,1,0,0,0,1),nrow=3)
-rownames(ssObj) <- rownames(pObj) <- colnames(ssObj) <- colnames(pObj) <- c("Gene1","Gene2","Gene3")
 tnfitObj <- tnetfit(ssObj, pObj)
 tnpostObj <- tnetpost(tnfitObj, mdelta=10, msample=10)
 class(tnpostObj)

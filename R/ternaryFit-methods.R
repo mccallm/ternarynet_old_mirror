@@ -1,5 +1,5 @@
-ternaryFit <- function(perturbationObj, steadyStateObj, degreeObjMin, graphObjMin, tableObjMin, newScore, minScore, finalTemperature, traces, stageCount, xSeed, inputParams){
-  new("ternaryFit", perturbationObj=perturbationObj, steadyStateObj=steadyStateObj, degreeObjMin=degreeObjMin, graphObjMin=graphObjMin, tableObjMin=tableObjMin, newScore=newScore, minScore=minScore, finalTemperature=finalTemperature, traces=traces, stageCount=stageCount, xSeed=xSeed, inputParams=inputParams)
+ternaryFit <- function(perturbationObj, steadyStateObj, geneNames, experimentNames, degreeObjMin, graphObjMin, tableObjMin, newScore, minScore, finalTemperature, traces, stageCount, xSeed, inputParams){
+  new("ternaryFit", perturbationObj=perturbationObj, steadyStateObj=steadyStateObj, geneNames=geneNames, experimentNames=experimentNames, degreeObjMin=degreeObjMin, graphObjMin=graphObjMin, tableObjMin=tableObjMin, newScore=newScore, minScore=minScore, finalTemperature=finalTemperature, traces=traces, stageCount=stageCount, xSeed=xSeed, inputParams=inputParams)
 }
 
 ## dim method
@@ -8,6 +8,8 @@ setMethod("dim", "ternaryFit", function(x) dim(x@perturbationObj))
 ## slot getters
 setMethod("perturbationObj", "ternaryFit", function(x) x@perturbationObj)
 setMethod("steadyStateObj", "ternaryFit", function(x) x@steadyStateObj)
+setMethod("geneNames", "ternaryFit", function(x) x@geneNames)
+setMethod("experimentNames", "ternaryFit", function(x) x@experimentNames)
 setMethod("degreeObjMin", "ternaryFit", function(x) x@degreeObjMin)
 setMethod("graphObjMin", "ternaryFit", function(x) x@graphObjMin)
 setMethod("tableObjMin", "ternaryFit", function(x) x@tableObjMin)
@@ -20,7 +22,11 @@ setMethod("traces", "ternaryFit", function(x) x@traces)
 setMethod("stageCount", "ternaryFit", function(x) x@stageCount)
 
 ## show method
-setMethod("show", "ternaryFit", function(object) cat(class(object), "instance with", dim(object)[2], "perturbation experiments, measuring", dim(object)[2], "genes \n")) 
+setMethod("show", "ternaryFit", function(object){
+    cat(class(object), "instance with", dim(object)[2], "perturbation experiments, measuring", dim(object)[2], "genes \n")
+    cat("Gene names:", geneNames(object),"\n")
+    cat("Experiment names:", experimentNames(object),"\n")
+    })
 
 ## validity method
 setValidity("ternaryFit", function(object){
@@ -44,6 +50,8 @@ setValidity("ternaryFit", function(object){
 ## slot setters
 setReplaceMethod("perturbationObj", "ternaryFit", function(x, value){x@perturbationObj <- value; validObject(x); x})
 setReplaceMethod("steadyStateObj", "ternaryFit", function(x, value){x@steadyStateObj <- value; validObject(x); x})
+setReplaceMethod("geneNames", "ternaryFit", function(x, value){x@geneNames <- value; validObject(x); x})
+setReplaceMethod("experimentNames", "ternaryFit", function(x, value){x@experimentNames <- value; validObject(x); x})
 setReplaceMethod("degreeObjMin", "ternaryFit", function(x, value){x@degreeObjMin <- value; validObject(x); x})
 setReplaceMethod("graphObjMin", "ternaryFit", function(x, value){x@graphObjMin <- value; validObject(x); x})
 setReplaceMethod("tableObjMin", "ternaryFit", function(x, value){x@tableObjMin <- value; validObject(x); x})

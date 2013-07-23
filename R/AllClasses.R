@@ -25,6 +25,8 @@ setClass("ternaryFit",
          representation(
             perturbationObj="matrix",   # an nGene by nExperiment matrix
             steadyStateObj="matrix",    # an nGene by nExperiment matrix
+            geneNames="character",      # a vector of gene names
+            experimentNames="character",# a vector of experiment names
             degreeObjMin="integer",     # an integer vector of length nGene
             graphObjMin="matrix",       # an nGene by nGene matrix
             tableObjMin="matrix",       # an nGene by tableWidth matrix
@@ -43,6 +45,8 @@ setClass("ternaryPost",
          representation(
             perturbationObj="matrix",   # an nGene by nExperiment matrix
             steadyStateObj="matrix",    # an nGene by nExperiment matrix
+            geneNames="character",      # a vector of gene names
+            experimentNames="character",# a vector of experiment names
             scores="numeric",           # numeric vector
             degreeObjs="matrix",        # integer matrix
             graphObjs="array",          # integer array
