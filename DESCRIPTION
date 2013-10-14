@@ -1,5 +1,5 @@
 Package: ternarynet
-Version: 1.5.3
+Version: 1.6.0
 Date: 2013-07-23
 Title: Ternary Network Estimation
 Description: A computational Bayesian approach to ternary gene regulatory network estimation from gene perturbation experiments.
