@@ -17,7 +17,6 @@ void PerturbFunction(int *newDegree, int nOutcomes, int *newTableComponent);
 void AddParent(int *newDegree, int proposalGene, int nGene, int nOutcomes, int *newGraphComponent, int *newTableComponent);
 void PerturbGene(int proposalGene, int nGene, int maxDegree, int nOutcomes, double probAddParent, double probExchangeParent, int *newDegree, int *newTableComponent, int *newGraphComponent);
 double errorFunction(double steadyStateValue, int predictedValue);
-int NewOutput(int OldState, int TableInput); 
 void ApplyOp(int nGene, int nOutcomes, int maxDegree, int *graphObj, int *tableObj, int *degreeObj, int *pathwayIn, int *pathwayOut);
 double AttractorDistanceForced(int nGene, int nOutcomes, int maxDegree, int nExperiment, double edgePenalty, int *tableObj, int *graphObj, int *degreeObj, const double *steadyStateObj, const int *perturbationObj);
 double initialTemp(double chi0, int m0,	int nOutcomes, int maxDegree, int nGene, int nExperiment, double edgePenalty, double pAddParent, double pExchangeParent, int neighborDegree, const double *pNeighborhood, int *degreeObj, int *graphObj, int *tableObj, const double *steadyStateObj, const int *perturbationObj);

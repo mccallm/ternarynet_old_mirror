@@ -323,7 +323,7 @@ void PerturbGene(int proposalGene, int nGene, int maxDegree, int nOutcomes,
 	int *excludedGenes = new int [maxDegree + 2];	
 
 	addParentFlag = (uniformdist() < probAddParent) && (newDegree[0] < maxDegree);
-        exchangeParentFlag = (uniformdist() < probExchangeParent) && (newDegree[0] < (nGene-1));  // 05-22-2013
+	exchangeParentFlag = (uniformdist() < probExchangeParent);
 	if ( (newDegree[0] > 0) &&  (exchangeParentFlag && !addParentFlag) ) perturbationType=1; 	// 09-15-2011
 	if ( (newDegree[0] == 0) || (addParentFlag) )  perturbationType=2; // 09-15-2011
 	if ( (newDegree[0] > 0) && !exchangeParentFlag && !addParentFlag ) perturbationType=3;
@@ -389,39 +389,11 @@ double errorFunction(double steadyStateValue, int predictedValue) {
 	return err;
 }
 
-//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-
-int NewOutput(int OldState, int TableInput) {
-
-	// increment changes in state 
-
-	int NewState =0;
-	int nIncr = 2; // 08-06-2012
-	
-	if (TableInput == 3 && OldState < nIncr) {
-		NewState = OldState + 1;
-	}
-	if (TableInput == 1 && OldState > -nIncr ) {
-		NewState = OldState -1;
-	}		
-	if (TableInput == 2 && OldState < 0) {
-		NewState = OldState + 1;
-	}		
-	if (TableInput == 2 && OldState > 0) {
-		NewState = OldState - 1;
-	}		
-
-	return NewState;
-
-}
-
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 			
 void ApplyOp(int nGene, int nOutcomes, int maxDegree, int *graphObj, int *tableObj, int *degreeObj, int *pathwayIn, int *pathwayOut) {
 
 // ternary specific 
-
-// we don't need nIncr here. 
 
 int tableWidth = powi(nOutcomes,maxDegree);
 int hashIndex;
@@ -430,22 +402,11 @@ int *index = new int[nGene+1];
 for (int i = 1; i <= nGene; ++i) {
 
 	if (degreeObj[i] == 0) {
-		
-		pathwayOut[i]=NewOutput(pathwayIn[i], 2); 
-		// pathwayOut[i]=2;
-		
+		pathwayOut[i]=2;
 	} else {
-		for (int j = 1; j<=degreeObj[i]; ++j) {
-			// 08-15-2012 change index[] index from i to j
-			index[j] = 2;
-			if (pathwayIn[graphObj[nGene*(i-1)+j-1]] < 0) {index[j] = 1;}; 			
-			if (pathwayIn[graphObj[nGene*(i-1)+j-1]] > 0) {index[j] = 3;}; // 
-			// index[j]=pathwayIn[graphObj[nGene*(i-1)+j-1]];
-		}
+		for (int j = 1; j<=degreeObj[i]; ++j) index[j]=pathwayIn[graphObj[nGene*(i-1)+j-1]];
 		hashIndex=ArrayToHash(index, degreeObj[i], nOutcomes);
-
-		pathwayOut[i]=NewOutput(pathwayIn[i], tableObj[tableWidth*(i-1)+hashIndex-1]); 
-                // pathwayOut[i] = tableObj[tableWidth*(i-1)+hashIndex-1];
+                pathwayOut[i] = tableObj[tableWidth*(i-1)+hashIndex-1];
         }
 }
 
@@ -462,9 +423,6 @@ double AttractorDistanceForced(int nGene, int nOutcomes, int maxDegree, int nExp
 
 // ternary specific
         
-int nIncr = 2; // 08-06-2012
-int tempState = 0; // 08-06-2012
-
 vector<int> pathwayList;
 int tableWidth = powi(nOutcomes,maxDegree);
 int *pathwayIn = new int[nGene+1];
@@ -484,13 +442,8 @@ for (int iExperiment = 1; iExperiment <= nExperiment; ++iExperiment) {
 
 	pathwayList.clear();
         for (int i=1; i <= nGene; ++i) {
-		
-		tempState = 0;
-		if (perturbationObj[(i-1)*nExperiment + iExperiment-1] == 1) {tempState = -nIncr;};
-		if (perturbationObj[(i-1)*nExperiment + iExperiment-1] == 3) {tempState = nIncr;};
-				
-		pathwayList.push_back(tempState); // debug 09-21-2011
-		pathwayIn[i]=tempState; // debug 09-21-2011
+		pathwayList.push_back(perturbationObj[(i-1)*nExperiment + iExperiment-1]); // debug 09-21-2011
+		pathwayIn[i]=perturbationObj[(i-1)*nExperiment + iExperiment-1]; // debug 09-21-2011
 	}		
 
 	ListPos=0; ListSize=1;
@@ -503,10 +456,7 @@ for (int iExperiment = 1; iExperiment <= nExperiment; ++iExperiment) {
 
                for (int i=1; i <= nGene; ++i) {
 		 if (perturbationObj[(i-1)*nExperiment + iExperiment-1] != 2) { // debug 09-21-2011
-			tempState = 0;
-			if (perturbationObj[(i-1)*nExperiment + iExperiment-1] == 1) {tempState = -nIncr;};
-			if (perturbationObj[(i-1)*nExperiment + iExperiment-1] == 3) {tempState = nIncr;};
-			pathwayOut[i]=tempState; // debug 09-21-2011
+		   pathwayOut[i]=perturbationObj[(i-1)*nExperiment + iExperiment-1]; // debug 09-21-2011
 		 }
 		 pathwayIn[i]=pathwayOut[i];
 		 pathwayList.push_back(pathwayOut[i]);
@@ -530,9 +480,9 @@ for (int iExperiment = 1; iExperiment <= nExperiment; ++iExperiment) {
         for (int i=ListPos; i <= (ListSize-1); ++i) {
                	for (int j=1; j <= nGene; ++j) {
 			if (attractorSummary[j] != 4) {
-	                	if (pathwayList[nGene*(i-1)+j-1] < 0) {
+	                	if (pathwayList[nGene*(i-1)+j-1] == 1) {
         	                	if (attractorSummary[j] == 3 ) {attractorSummary[j]=4;}  else {attractorSummary[j]=1;}}
-                        	if (pathwayList[nGene*(i-1)+j-1] > 0) {
+                        	if (pathwayList[nGene*(i-1)+j-1] == 3) {
         	                	if (attractorSummary[j] == 1 ) {attractorSummary[j]=4;}  else {attractorSummary[j]=3;}}
 			}                                                
                 }
